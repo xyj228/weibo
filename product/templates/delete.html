@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="/product/delete" method="post">
+        <input type="text" name="name" placeholder="请输入要删除的文章名">
+        <input type="submit" value="点击删除">
+    </form>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="/product/change" method="post">
+        <input type="text" name="name" placeholder="请输入要修改的文章名">
+        <input type="text" name="article" placeholder="请输入内容">
+        <input type="submit" value="点击开始修改">
+    </form>
+{% endblock %}

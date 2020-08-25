@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="/product/create" method="post">
+        <input type="text" name="name" placeholder="标题"><br>
+        <input type="text" name="article" placeholder="写点什么吧......"><br>
+        <input type="submit" value="点击上传">
+    </form>
+{% endblock %}

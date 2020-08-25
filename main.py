@@ -5,6 +5,8 @@ from flask_migrate import Migrate, MigrateCommand
 from libs.orm import db
 from user.views import user_bp
 from user.models import User
+from product.views import pro_bp
+from product.models import Pro
 
 # 初始化app
 app = Flask(__name__)
@@ -14,6 +16,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 # 注册蓝图
 app.register_blueprint(user_bp)
+app.register_blueprint(pro_bp)
 
 # 初始化manager
 manager = Manager(app)
@@ -26,8 +29,11 @@ manager.add_command('db', MigrateCommand)
 
 @app.route('/')
 def home():
+
     return render_template('home.html')
 
 
+
 if __name__ == '__main__':
+    print(app.url_map)
     manager.run()

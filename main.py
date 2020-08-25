@@ -1,14 +1,19 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 
 from libs.orm import db
+from user.views import user_bp
+from user.models import User
 
 # 初始化app
 app = Flask(__name__)
 app.secret_key = r'sdas&%tsgdy&^&dt'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Xyj970228..@localhost/weibo'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+
+# 注册蓝图
+app.register_blueprint(user_bp)
 
 # 初始化manager
 manager = Manager(app)
@@ -21,8 +26,7 @@ manager.add_command('db', MigrateCommand)
 
 @app.route('/')
 def home():
-    '''首页'''
-    return 'Hello'
+    return render_template('home.html')
 
 
 if __name__ == '__main__':

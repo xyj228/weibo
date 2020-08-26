@@ -7,6 +7,8 @@ from user.views import user_bp
 from user.models import User
 from product.views import pro_bp
 from product.models import Pro
+from discuss.views import dcs_bp
+from discuss.models import Discuss
 
 # 初始化app
 app = Flask(__name__)
@@ -17,6 +19,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 # 注册蓝图
 app.register_blueprint(user_bp)
 app.register_blueprint(pro_bp)
+app.register_blueprint(dcs_bp)
 
 # 初始化manager
 manager = Manager(app)

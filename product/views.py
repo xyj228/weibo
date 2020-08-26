@@ -1,5 +1,5 @@
-from flask import request, Blueprint, render_template
-
+from flask import request, Blueprint, render_template, session
+import datetime
 from libs.orm import db
 from product.models import Pro
 
@@ -16,12 +16,14 @@ def create():
     if request.method == 'POST':
         name = request.form.get('name')
         text = request.form.get('article')
+        date = datetime.datetime.now()
         try:
             Pro.query.filter_by(name=name).one()
         except Exception as e:
             pro = Pro()
             pro.name = name
             pro.article = text
+            pro.date = date
             db.session.add(pro)
             db.session.commit()
             return render_template('rlt.html', pro=pro)
@@ -64,3 +66,10 @@ def delete():
             return '删除成功'
     else:
         return render_template('delete.html')
+
+
+@pro_bp.route('/index', methods=('POST', 'GET'))
+def index():
+    uname = session['username']
+    pro = Pro.query.all()
+    return render_template('index.html', pro=pro, uname=uname)

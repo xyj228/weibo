@@ -15,6 +15,7 @@ def first():
 def create():
     if request.method == 'POST':
         name = request.form.get('name')
+        uname = session['username']
         text = request.form.get('article')
         date = datetime.datetime.now()
         try:
@@ -22,9 +23,11 @@ def create():
         except Exception as e:
             pro = Pro()
             pro.name = name
+            pro.uname = uname
             pro.article = text
             pro.date = date
             db.session.add(pro)
+            session['proname'] = name
             db.session.commit()
             return render_template('rlt.html', pro=pro)
         else:

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="/bk" method="post">
+        <input type="text" name="bkwords" placeholder="请输入回复内容">
+        <input type="submit" value="点击提交回复">
+    </form>
+
+{% endblock %}

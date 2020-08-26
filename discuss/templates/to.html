@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="/discuss/to" method="post">
+        <input type="text" name="discuss" placeholder="在此输入评论内容"><br>
+        <input type="submit" placeholder="点击评论">
+    </form>
+    
+{% endblock %}
